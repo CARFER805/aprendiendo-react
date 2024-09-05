@@ -34,19 +34,19 @@ function App() {
   const updateBoard = (index) => {
     // no actualizamos esta posicion si ya tiene algo
     if (board[index] || winner) return;
-    //actualizar el tablero
+    // actualizar el tablero
     const newBoard = [...board];
     newBoard[index] = turn;
     setBoard(newBoard);
-    //cambiar el turno
+    // cambiar el turno
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X;
     setTurn(newTurn);
     // Guardar partida solo si localStorage está disponible
     if (typeof window !== 'undefined' && window.localStorage) {
       saveGameToStorage({ board: newBoard, turn: newTurn });
     }
-    //window.localStorage.setItem('board', JSON.stringify(newBoard));
-    //Window.localStorage.setItem('turn', newTurn);
+    // window.localStorage.setItem('board', JSON.stringify(newBoard));
+    // Window.localStorage.setItem('turn', newTurn);
 
     // revisar si hay ganador
     const newWinner = checkWinnerFrom(newBoard);
